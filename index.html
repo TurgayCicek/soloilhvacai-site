@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SOLO IL HVAC AI | Technician. AI Learner. Future Specialist.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SOLO IL HVAC AI - early-career HVAC technician and HVAC AI learner based in New Jersey, building skills in EPA 608, smart buildings, BMS, BACnet, and BrainBox AI." />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1220;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.1);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --card: #020617;
+      --danger: #ef4444;
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.6);
+      --shadow-small: 0 8px 20px rgba(0, 0, 0, 0.4);
+      --max-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 50%, #020617 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px 48px;
+    }
+
+    main {
+      width: 100%;
+      max-width: var(--max-width);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.8);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 32px;
+      margin-bottom: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-top: 16px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #22c55e, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 460px;
+    }
+
+    .hero-subtitle strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease,
+        background 0.12s ease, color 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #22c55e, #16a34a);
+      color: #020617;
+      box-shadow: var(--shadow-small);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      border-color: var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+      font-size: 11px;
+    }
+
+    .hero-tag {
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--muted);
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      padding: 18px 18px 16px;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.22), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .hero-logo {
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+    }
+
+    .hero-badge {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+    }
+
+    .hero-level {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .metric {
+      border-radius: 13px;
+      padding: 8px 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 11px;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .metric-value {
+      margin-top: 2px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .metric-sub {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .hero-timeline {
+      margin-top: 6px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(55, 65, 81, 0.9);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-timeline strong {
+      color: var(--text);
+    }
+
+    section {
+      margin-bottom: 32px;
+    }
+
+    section h2 {
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-small);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 800px) {
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .text-muted {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(2, 6, 23, 0.9);
+      color: var(--muted);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+      font-size: 13px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr);
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .timeline-year {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .timeline-text strong {
+      display: block;
+      font-weight: 600;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+      margin-top: 6px;
+    }
+
+    .badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .projects {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 640px) {
+      .projects {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .project {
+      border-radius: 14px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      background: rgba(2, 6, 23, 0.95);
+      padding: 10px 11px;
+      font-size: 12px;
+    }
+
+    .project-title {
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .project-tagline {
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .project-label {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 800px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-row {
+      margin-top: 6px;
+      font-size: 13px;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .contact-value a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-value a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 24px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding-top: 10px;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .dot-separator::before {
+      content: "•";
+      margin-right: 6px;
+      color: rgba(75, 85, 99, 0.9);
+    }
+
+    .badge-danger {
+      border-color: rgba(239, 68, 68, 0.8);
+      color: var(--danger);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main>
+      <!-- HERO -->
+      <header>
+        <div>  
+          <img src="logo.png" alt="SOLO IL HVAC AI Logo"
+     style="width:160px; margin-bottom:25px; filter: drop-shadow(0 0 14px rgba(0, 255, 180, 0.9));">
+
+          <div class="pill">
+            <span class="pill-dot"></span>
+            SOLO IL HVAC AI · Learning from zero to specialist
+          </div>
+          <h1 class="hero-title">
+            Technician. <span>AI Learner.</span> Future Specialist.
+          </h1>
+          <p class="hero-subtitle">
+            I am <strong>Turgay Çiçek</strong>, an early-career HVAC technician
+            and HVAC AI learner based in New Jersey, USA.
+            I am building a long-term path from
+            <strong>EPA 608 and field experience</strong>
+            to smart buildings, BMS, BACnet and AI-driven energy optimization.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#journey" class="btn btn-primary">
+              Explore my HVAC · AI journey →
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              Connect about opportunities
+            </a>
+          </div>
+
+          <div class="hero-tags">
+            <span class="hero-tag">EPA 608 Preparation</span>
+            <span class="hero-tag">Entry-level HVAC Technician</span>
+            <span class="hero-tag">Smart Buildings & BMS</span>
+            <span class="hero-tag">BACnet · BrainBox AI</span>
+            <span class="hero-tag">New Jersey, USA</span>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-card-inner">
+            <div class="hero-card-header">
+              <div class="hero-logo">SOLO&nbsp;IL&nbsp;HVAC&nbsp;AI</div>
+              <div class="hero-badge">Learning Journey · 2025 →</div>
+            </div>
+
+            <div class="hero-level">
+              Current focus:
+              <strong>EPA 608 · HVAC fundamentals · smart building concepts</strong>
+            </div>
+
+            <div class="hero-metrics">
+              <div class="metric">
+                <div class="metric-label">Certification Path</div>
+                <div class="metric-value">EPA 608 (in progress)</div>
+                <div class="metric-sub">SkillCat & practice exams</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Technical Base</div>
+                <div class="metric-value">HVAC + IT</div>
+                <div class="metric-sub">ITF & Google IT (planned)</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Future Focus</div>
+                <div class="metric-value">HVAC AI</div>
+                <div class="metric-sub">BrainBox · BMS · data</div>
+              </div>
+            </div>
+
+            <div class="hero-timeline">
+              <strong>2025–2028 Plan:</strong> EPA 608 and entry-level HVAC →
+              complete core safety and refrigerant training →
+              build IT and networking basics →
+              specialize in smart buildings and HVAC AI.
+            </div>
+          </div>
+        </aside>
+      </header>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <h2>About</h2>
+        <div class="card grid-2">
+          <div>
+            <p class="text-muted">
+              I am building a two-track career as a
+              <strong>hands-on HVAC technician</strong> and a
+              <strong>smart building & HVAC AI learner</strong>.
+              My goal is to combine strong field fundamentals with digital tools
+              like BMS, BACnet and AI so I can add real value to modern buildings.
+            </p>
+            <p class="text-muted" style="margin-top: 8px;">
+              I am at the beginning of this journey, but I am consistent:
+              daily study, structured notes and long-term planning.
+              This site is where I document that process openly.
+            </p>
+
+            <div class="chips">
+              <span class="chip">New Jersey · USA</span>
+              <span class="chip">Early-career HVAC</span>
+              <span class="chip">Smart Building Enthusiast</span>
+              <span class="chip">HVAC + IT + AI mindset</span>
+            </div>
+          </div>
+          <div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-year">2024–2025</div>
+                <div class="timeline-text">
+                  <strong>Foundation: EPA 608 & HVAC basics</strong>
+                  Self-study with SkillCat, English notes and frequent practice exams.
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2025–2026</div>
+                <div class="timeline-text">
+                  <strong>Safety & IT base</strong>
+                  R-410A, OSHA 10 and IT fundamentals (CompTIA ITF or Google IT)
+                  to understand networks, systems and troubleshooting.
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2026–2030</div>
+                <div class="timeline-text">
+                  <strong>Smart buildings & HVAC AI</strong>
+                  Focus on BMS, BACnet, BrainBox AI, digital twins and
+                  data-driven optimization for commercial buildings.
+                </div>
+              </div>
+            </div>
+            <div class="badge-row">
+              <span class="badge">EPA 608 Universal (Target)</span>
+              <span class="badge">R-410A (Target)</span>
+              <span class="badge">OSHA 10 (Target)</span>
+              <span class="badge">Smart Building & BMS learner</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOURNEY -->
+      <section id="journey">
+        <h2>Learning Journey</h2>
+        <div class="card">
+          <p class="text-muted">
+            This website is a live learning log for my HVAC and AI journey.
+            I share what I am studying, tools I am testing and how I connect
+            field work with digital systems and data.
+          </p>
+
+          <div class="projects" style="margin-top: 14px;">
+            <article class="project">
+              <div class="project-label">Track 01 · Technical</div>
+              <div class="project-title">EPA 608 & Refrigeration Basics</div>
+              <div class="project-tagline">
+                SkillCat modules, structured notes, multiple-choice practice and test simulations.
+              </div>
+              <div class="project-meta">
+                Focus: refrigerant rules, safety, recovery, charging, leak checks and recordkeeping.
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-label">Track 02 · IT & Systems</div>
+              <div class="project-title">IT Foundations for HVAC</div>
+              <div class="project-tagline">
+                IT fundamentals to support BMS, networking, remote access and monitoring tools.
+              </div>
+              <div class="project-meta">
+                Focus: networking basics, operating systems, troubleshooting and cybersecurity mindset.
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-label">Track 03 · Smart Buildings</div>
+              <div class="project-title">BMS, BACnet & HVAC AI</div>
+              <div class="project-tagline">
+                Understanding how building automation, data and AI work together for efficiency.
+              </div>
+              <div class="project-meta">
+                Focus: BACnet, BMS dashboards, KPIs, energy optimization and digital twin concepts.
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <h2>Skills Snapshot</h2>
+        <div class="card grid-2">
+          <div>
+            <p class="text-muted">
+              I am still early in my technical career, but I am building
+              a strong base step by step with consistency.
+            </p>
+            <div class="chips">
+              <span class="chip">EPA 608 study</span>
+              <span class="chip">Basic electrical & 24 VAC</span>
+              <span class="chip">Split & packaged systems (intro)</span>
+              <span class="chip">Documentation & note taking</span>
+            </div>
+          </div>
+          <div>
+            <div class="chips">
+              <span class="chip">IT fundamentals (planned)</span>
+              <span class="chip">Networking & devices (intro)</span>
+              <span class="chip">BMS & BACnet (concept level)</span>
+              <span class="chip">BrainBox AI & smart building concepts</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="card contact-grid">
+          <div>
+            <p class="text-muted">
+              I am open to entry-level HVAC opportunities, mentorship and projects
+              related to smart buildings, BMS or HVAC AI.
+              If you are looking for someone who is serious about learning,
+              consistency and long-term growth, I would be glad to connect.
+            </p>
+          </div>
+          <div>
+            <div class="contact-row">
+              <div class="contact-label">Email</div>
+              <div class="contact-value">
+                <!-- Replace this with your real email address -->
+                <a href="mailto:your-email@example.com">your-email@example.com</a>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">Location</div>
+              <div class="contact-value">New Jersey, United States</div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">Social</div>
+              <div class="contact-value">
+                LinkedIn · GitHub · Instagram (coming soon)
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATUS -->
+      <section>
+        <h2>Status</h2>
+        <div class="card">
+          <div class="badge-row">
+            <span class="badge badge-danger">Site Status: Version 1 · Work in progress</span>
+            <span class="badge">Next step: Connect GitHub → Netlify</span>
+            <span class="badge">Future: Blog posts & project pages</span>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span id="year"></span> SOLO IL HVAC AI · Turgay Çiçek</div>
+        <div class="footer-right">
+          <span>Built as a learning log.</span>
+          <span class="dot-separator">HVAC · IT · AI</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
