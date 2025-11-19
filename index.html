@@ -1089,13 +1089,48 @@
       <!-- STATUS -->
       <section>
         <h2>Status</h2>
-        <div class="card">
-          <div class="badge-row">
-            <span class="badge badge-danger">Site Status: Version 1 · Work in progress</span>
-            <span class="badge">Next step: Connect GitHub → Netlify</span>
-            <span class="badge">Future: Blog posts & project pages</span>
-          </div>
-        </div>
+       <div class="card">
+  <div class="status-grid">
+    <div class="status-item">
+      <span class="label">Current Version</span>
+      <span class="value">v1.0 – Building core structure</span>
+    </div>
+
+    <div class="status-item">
+      <span class="label">Next Step</span>
+      <span class="value">Connect GitHub → Netlify deployment</span>
+    </div>
+
+    <div class="status-item">
+      <span class="label">Upcoming</span>
+      <span class="value">Project pages • Blog posts • Social integration</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .status-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .status-item {
+    background: rgba(255,255,255,0.05);
+    padding: 10px 14px;
+    border-radius: 6px;
+  }
+  .label {
+    display: block;
+    font-size: 0.8rem;
+    color: #bbb;
+  }
+  .value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+  }
+</style>
+
       </section>
 
       <footer>
@@ -1113,6 +1148,7 @@
   </script>
 </body>
 </html>
+
 
 
 
