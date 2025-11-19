@@ -1133,13 +1133,58 @@
 
       </section>
 
-      <footer>
-        <div>© <span id="year"></span> SOLO IL HVAC AI · Turgay Çiçek</div>
-        <div class="footer-right">
-          <span>Built as a learning log.</span>
-          <span class="dot-separator">HVAC · IT · AI</span>
-        </div>
-      </footer>
+     <footer class="footer-clean">
+    <div class="footer-left">
+        © <span id="year"></span> SOLO IL HVAC AI — Turgay Çiçek
+    </div>
+
+    <div class="footer-right">
+        <span>Built as a learning log</span>
+        <span class="dot">•</span>
+        <span>HVAC · IT · AI</span>
+    </div>
+</footer>
+
+<style>
+    .footer-clean {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 20px;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        margin-top: 40px;
+        font-size: 0.9rem;
+        color: #cfcfcf;
+    }
+
+    .footer-right span {
+        margin-left: 6px;
+    }
+
+    .footer-left {
+        opacity: 0.9;
+    }
+
+    .footer-right {
+        display: flex;
+        align-items: center;
+        opacity: 0.9;
+    }
+
+    .dot {
+        margin: 0 5px;
+        opacity: 0.5;
+    }
+
+    @media (max-width: 768px) {
+        .footer-clean {
+            flex-direction: column;
+            text-align: center;
+            gap: 8px;
+        }
+    }
+</style>
+
     </main>
   </div>
 
@@ -1148,6 +1193,7 @@
   </script>
 </body>
 </html>
+
 
 
 
